@@ -13,7 +13,11 @@ namespace Diplom {
             InitializeComponent();
             OpenFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
+        //List<string> lstWithNameList; // контейнер, где хранятся имена всех контейнеров C++
+        //List<string> lstWithBlocks;  контейнер, где хранятся блоки со всеми циклами C++
+        Dictionary<string, int> informationMas;
         string filePath;
+
         private void ToChooseFile_Click(object sender, EventArgs e) {
             if (OpenFile.ShowDialog() == DialogResult.Cancel)
                 return;
@@ -21,6 +25,23 @@ namespace Diplom {
             statusStrip1.Visible = true;
             toolStripStatusLabel1.Visible = true;
             toolStripStatusLabel1.Text = filePath;
+        }
+
+        private void CodeAnalysis_Click(object sender, EventArgs e) {
+            ParsingClass parsing = new ParsingClass(filePath);
+            parsing.ParsingText();
+            informationMas = parsing.informationMas;
+
+            TableWithResult.Visible = true;
+            TableWithResult.ColumnCount = 2;
+            TableWithResult.RowCount = informationMas.Count;
+            int index = 0;
+            foreach (KeyValuePair <string, int> tmp in informationMas) {
+                TableWithResult.Rows[index].Cells[0].Value = tmp.Key;
+                TableWithResult.Rows[index].Cells[1].Value = tmp.Value;
+            }
+
+            
         }
     }
 }

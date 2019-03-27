@@ -59,11 +59,9 @@ namespace Diplom {
                     mas[1] = 0;
                     //lstWithBlocks.Add(pattern.Replace(strWithFor.Trim('\t'), "\n"));
                     lstWithBlocks.Add(strWithFor);
-
                 }
-
             }
-            PrintList(lstWithBlocks);
+            SearchIterators();
         }
 
         private static void SearchOpenBracket(string str) {
@@ -85,6 +83,28 @@ namespace Diplom {
         public void PrintList(List<string> lst) {
             foreach (var strok in lst)
                 Console.WriteLine(strok);
+        }
+
+        /*
+         * Работает не правильно, если элементы и добавляются, и идёт обращение 
+         */
+        public void SearchIterators() {
+            for (int i = 0; i < lstWithBlocks.Count; i++) {
+                string strWithArg = lstWithBlocks[i].Substring(lstWithBlocks[i].IndexOf('(') + 1, lstWithBlocks[i].IndexOf(';') - lstWithBlocks[i].IndexOf('(') - 1);
+                int pos1 = strWithArg.IndexOf(' ');
+                int pos2 = strWithArg.IndexOf('=');
+                string nameIterator = strWithArg.Substring(pos1 + 1, pos2 - pos1 - 1).Trim(' ');
+                Regex regex = new Regex(@"\w*::iterator");
+                if (regex.IsMatch(strWithArg)) {
+                    string[] masString = lstWithBlocks[i].Split('\t');
+                    for (int j = 1; j < masString.Length; j++) {
+                        if (masString[i].Contains(nameIterator)) {
+                            informationMas.Add(nameIterator, indexList[i]);
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
     }

@@ -27,10 +27,10 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.OpenFile = new System.Windows.Forms.OpenFileDialog();
             this.ToChooseFile = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.TableWithResult = new System.Windows.Forms.DataGridView();
             this.CodeAnalysis = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableWithResult)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -65,19 +65,20 @@
             this.ToChooseFile.UseVisualStyleBackColor = true;
             this.ToChooseFile.Click += new System.EventHandler(this.ToChooseFile_Click);
             // 
-            // dataGridView1
+            // TableWithResult
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.ColumnHeadersVisible = false;
-            this.dataGridView1.Location = new System.Drawing.Point(381, 46);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView1.TabIndex = 2;
+            this.TableWithResult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.TableWithResult.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.TableWithResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TableWithResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TableWithResult.ColumnHeadersVisible = false;
+            this.TableWithResult.Location = new System.Drawing.Point(381, 46);
+            this.TableWithResult.Name = "TableWithResult";
+            this.TableWithResult.RowHeadersVisible = false;
+            this.TableWithResult.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TableWithResult.Size = new System.Drawing.Size(240, 150);
+            this.TableWithResult.TabIndex = 2;
+            this.TableWithResult.Visible = false;
             // 
             // CodeAnalysis
             // 
@@ -88,6 +89,7 @@
             this.CodeAnalysis.TabIndex = 3;
             this.CodeAnalysis.Text = "Начать анализ участка кода";
             this.CodeAnalysis.UseVisualStyleBackColor = true;
+            this.CodeAnalysis.Click += new System.EventHandler(this.CodeAnalysis_Click);
             // 
             // Form1
             // 
@@ -95,14 +97,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(810, 413);
             this.Controls.Add(this.CodeAnalysis);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.TableWithResult);
             this.Controls.Add(this.ToChooseFile);
             this.Controls.Add(this.statusStrip1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TableWithResult)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,7 +116,7 @@
         private System.Windows.Forms.OpenFileDialog OpenFile;
         private System.Windows.Forms.Button ToChooseFile;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView TableWithResult;
         private System.Windows.Forms.Button CodeAnalysis;
     }
 }
