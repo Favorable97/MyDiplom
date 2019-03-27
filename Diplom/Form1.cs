@@ -13,11 +13,11 @@ namespace Diplom {
             InitializeComponent();
             OpenFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
-
+        string filePath;
         private void ToChooseFile_Click(object sender, EventArgs e) {
             if (OpenFile.ShowDialog() == DialogResult.Cancel)
                 return;
-            string filePath = OpenFile.FileName;
+            filePath = OpenFile.FileName;
             statusStrip1.Visible = true;
             toolStripStatusLabel1.Visible = true;
             toolStripStatusLabel1.Text = filePath;
