@@ -39,9 +39,21 @@ namespace Diplom {
             foreach (KeyValuePair <string, int> tmp in informationMas) {
                 TableWithResult.Rows[index].Cells[0].Value = tmp.Key;
                 TableWithResult.Rows[index].Cells[1].Value = tmp.Value;
+                index++;
             }
+            /*
+             * size_type _Grow_to(size_type _Count) const
+		{	// grow by 50% or at least to _Count
+		size_type _Capacity = capacity();
 
-            
+		_Capacity = max_size() - _Capacity / 2 < _Capacity
+			? 0 : _Capacity + _Capacity / 2;	// try to grow by 50%
+		if (_Capacity < _Count)
+			_Capacity = _Count;
+		return (_Capacity);
+		}
+             */
+
         }
     }
 }

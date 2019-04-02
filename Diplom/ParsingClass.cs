@@ -97,8 +97,8 @@ namespace Diplom {
                 Regex regex = new Regex(@"\w*::iterator");
                 if (regex.IsMatch(strWithArg)) {
                     string[] masString = lstWithBlocks[i].Split('\t');
-                    for (int j = 1; j < masString.Length; j++) {
-                        if (masString[i].Contains(nameIterator)) {
+                    for (int j = 2; j < masString.Length; j++) {
+                        if (masString[j].Contains(nameIterator)) {
                             informationMas.Add(nameIterator, indexList[i]);
                             break;
                         }
