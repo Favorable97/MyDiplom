@@ -32,15 +32,16 @@ namespace Diplom {
             parsing.ParsingText();
             informationMas = parsing.informationMas;
 
-            TableWithResult.Visible = true;
-            TableWithResult.ColumnCount = 2;
-            TableWithResult.RowCount = informationMas.Count;
+            MyTable.Visible = true;
+            //MyTable.ColumnCount = 2;
+            MyTable.RowCount = informationMas.Count;
             int index = 0;
             foreach (KeyValuePair <string, int> tmp in informationMas) {
-                TableWithResult.Rows[index].Cells[0].Value = tmp.Key;
-                TableWithResult.Rows[index].Cells[1].Value = tmp.Value;
+                MyTable.Rows[index].Cells[1].Value = tmp.Key;
+                MyTable.Rows[index].Cells[2].Value = tmp.Value;
                 index++;
             }
+            InformForWin.Visible = true;
             /*
              * size_type _Grow_to(size_type _Count) const
 		{	// grow by 50% or at least to _Count
