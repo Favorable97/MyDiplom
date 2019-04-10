@@ -34,18 +34,23 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InformForWin = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.CalculationWin = new System.Windows.Forms.GroupBox();
             this.LimitMemory = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.CheckCondition = new System.Windows.Forms.GroupBox();
+            this.labelAWithWin = new System.Windows.Forms.Label();
+            this.CalcWinButton = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MyTable)).BeginInit();
-            this.InformForWin.SuspendLayout();
+            this.CalculationWin.SuspendLayout();
+            this.CheckCondition.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -72,7 +77,7 @@
             // ToChooseFile
             // 
             this.ToChooseFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ToChooseFile.Location = new System.Drawing.Point(2, 46);
+            this.ToChooseFile.Location = new System.Drawing.Point(2, 20);
             this.ToChooseFile.Name = "ToChooseFile";
             this.ToChooseFile.Size = new System.Drawing.Size(125, 35);
             this.ToChooseFile.TabIndex = 1;
@@ -83,7 +88,7 @@
             // CodeAnalysis
             // 
             this.CodeAnalysis.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CodeAnalysis.Location = new System.Drawing.Point(2, 98);
+            this.CodeAnalysis.Location = new System.Drawing.Point(2, 72);
             this.CodeAnalysis.Name = "CodeAnalysis";
             this.CodeAnalysis.Size = new System.Drawing.Size(125, 43);
             this.CodeAnalysis.TabIndex = 3;
@@ -105,7 +110,7 @@
             this.Column3,
             this.Column4,
             this.Column5});
-            this.MyTable.Location = new System.Drawing.Point(450, 46);
+            this.MyTable.Location = new System.Drawing.Point(2, 135);
             this.MyTable.Name = "MyTable";
             this.MyTable.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.MyTable.Size = new System.Drawing.Size(470, 73);
@@ -146,61 +151,49 @@
             this.Column5.Name = "Column5";
             this.Column5.Width = 136;
             // 
-            // InformForWin
+            // CalculationWin
             // 
-            this.InformForWin.Controls.Add(this.LimitMemory);
-            this.InformForWin.Controls.Add(this.label7);
-            this.InformForWin.Controls.Add(this.label6);
-            this.InformForWin.Controls.Add(this.label5);
-            this.InformForWin.Controls.Add(this.label4);
-            this.InformForWin.Controls.Add(this.label3);
-            this.InformForWin.Controls.Add(this.label2);
-            this.InformForWin.Controls.Add(this.label1);
-            this.InformForWin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.InformForWin.Location = new System.Drawing.Point(2, 190);
-            this.InformForWin.Name = "InformForWin";
-            this.InformForWin.Size = new System.Drawing.Size(300, 143);
-            this.InformForWin.TabIndex = 5;
-            this.InformForWin.TabStop = false;
-            this.InformForWin.Text = "Данные для подсчёта выигрыша";
-            this.InformForWin.Visible = false;
+            this.CalculationWin.Controls.Add(this.CalcWinButton);
+            this.CalculationWin.Controls.Add(this.labelAWithWin);
+            this.CalculationWin.Controls.Add(this.label6);
+            this.CalculationWin.Controls.Add(this.label5);
+            this.CalculationWin.Controls.Add(this.label4);
+            this.CalculationWin.Controls.Add(this.label3);
+            this.CalculationWin.Controls.Add(this.label2);
+            this.CalculationWin.Controls.Add(this.label1);
+            this.CalculationWin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CalculationWin.Location = new System.Drawing.Point(545, 12);
+            this.CalculationWin.Name = "CalculationWin";
+            this.CalculationWin.Size = new System.Drawing.Size(333, 172);
+            this.CalculationWin.TabIndex = 5;
+            this.CalculationWin.TabStop = false;
+            this.CalculationWin.Text = "Данные для подсчёта выигрыша";
+            this.CalculationWin.Visible = false;
             // 
-            // label1
+            // LimitMemory
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(16, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "s";
+            this.LimitMemory.Location = new System.Drawing.Point(39, 35);
+            this.LimitMemory.Name = "LimitMemory";
+            this.LimitMemory.Size = new System.Drawing.Size(29, 22);
+            this.LimitMemory.TabIndex = 7;
             // 
-            // label2
+            // label7
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(17, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(21, 12);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "list";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(8, 41);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 16);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "V = ";
             // 
-            // label3
+            // label6
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(35, 31);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 16);
-            this.label3.TabIndex = 2;
-            this.label3.Text = " = 1";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 60);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(16, 16);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "s";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(54, 62);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(32, 16);
+            this.label6.TabIndex = 5;
+            this.label6.Text = " = 2";
             // 
             // label5
             // 
@@ -212,37 +205,93 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "vector";
             // 
-            // label6
+            // label4
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(54, 62);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(32, 16);
-            this.label6.TabIndex = 5;
-            this.label6.Text = " = 2";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 60);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(16, 16);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "s";
             // 
-            // label7
+            // label3
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 95);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 16);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "V = ";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(35, 31);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(32, 16);
+            this.label3.TabIndex = 2;
+            this.label3.Text = " = 1";
             // 
-            // LimitMemory
+            // label2
             // 
-            this.LimitMemory.Location = new System.Drawing.Point(38, 89);
-            this.LimitMemory.Name = "LimitMemory";
-            this.LimitMemory.Size = new System.Drawing.Size(29, 22);
-            this.LimitMemory.TabIndex = 7;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(17, 38);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(21, 12);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "list";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(16, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "s";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(11, 76);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(87, 36);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Анализ";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // CheckCondition
+            // 
+            this.CheckCondition.Controls.Add(this.button1);
+            this.CheckCondition.Controls.Add(this.LimitMemory);
+            this.CheckCondition.Controls.Add(this.label7);
+            this.CheckCondition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CheckCondition.Location = new System.Drawing.Point(545, 200);
+            this.CheckCondition.Name = "CheckCondition";
+            this.CheckCondition.Size = new System.Drawing.Size(333, 135);
+            this.CheckCondition.TabIndex = 6;
+            this.CheckCondition.TabStop = false;
+            this.CheckCondition.Text = "Данные для проверки";
+            this.CheckCondition.Visible = false;
+            // 
+            // labelAWithWin
+            // 
+            this.labelAWithWin.AutoSize = true;
+            this.labelAWithWin.Location = new System.Drawing.Point(8, 99);
+            this.labelAWithWin.Name = "labelAWithWin";
+            this.labelAWithWin.Size = new System.Drawing.Size(33, 16);
+            this.labelAWithWin.TabIndex = 6;
+            this.labelAWithWin.Text = "F = ";
+            // 
+            // CalcWinButton
+            // 
+            this.CalcWinButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CalcWinButton.Location = new System.Drawing.Point(147, 30);
+            this.CalcWinButton.Name = "CalcWinButton";
+            this.CalcWinButton.Size = new System.Drawing.Size(137, 46);
+            this.CalcWinButton.TabIndex = 7;
+            this.CalcWinButton.Text = "Рассчитать выигрыш";
+            this.CalcWinButton.UseVisualStyleBackColor = true;
+            this.CalcWinButton.Click += new System.EventHandler(this.CalcWinButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1179, 413);
-            this.Controls.Add(this.InformForWin);
+            this.Controls.Add(this.CheckCondition);
+            this.Controls.Add(this.CalculationWin);
             this.Controls.Add(this.MyTable);
             this.Controls.Add(this.CodeAnalysis);
             this.Controls.Add(this.ToChooseFile);
@@ -252,8 +301,10 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MyTable)).EndInit();
-            this.InformForWin.ResumeLayout(false);
-            this.InformForWin.PerformLayout();
+            this.CalculationWin.ResumeLayout(false);
+            this.CalculationWin.PerformLayout();
+            this.CheckCondition.ResumeLayout(false);
+            this.CheckCondition.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,7 +323,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.GroupBox InformForWin;
+        private System.Windows.Forms.GroupBox CalculationWin;
         private System.Windows.Forms.TextBox LimitMemory;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -281,6 +332,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button CalcWinButton;
+        private System.Windows.Forms.Label labelAWithWin;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox CheckCondition;
     }
 }
 

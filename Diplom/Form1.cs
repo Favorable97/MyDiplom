@@ -31,17 +31,12 @@ namespace Diplom {
             ParsingClass parsing = new ParsingClass(filePath);
             parsing.ParsingText();
             informationMas = parsing.informationMas;
-
             MyTable.Visible = true;
-            //MyTable.ColumnCount = 2;
             MyTable.RowCount = informationMas.Count;
-            int index = 0;
-            foreach (KeyValuePair <string, int> tmp in informationMas) {
-                MyTable.Rows[index].Cells[1].Value = tmp.Key;
-                MyTable.Rows[index].Cells[2].Value = tmp.Value;
-                index++;
-            }
-            InformForWin.Visible = true;
+            ToFillTable();
+            CalculationWin.Visible = true;
+
+            #region _Grow_to_
             /*
              * size_type _Grow_to(size_type _Count) const
 		{	// grow by 50% or at least to _Count
@@ -54,6 +49,20 @@ namespace Diplom {
 		return (_Capacity);
 		}
              */
+            #endregion
+
+        }
+
+        private void ToFillTable(){
+            int index = 0;
+            foreach (KeyValuePair<string, int> tmp in informationMas) {
+                MyTable.Rows[index].Cells[1].Value = tmp.Key;
+                MyTable.Rows[index].Cells[2].Value = tmp.Value;
+                index++;
+            }
+        }
+
+        private void CalcWinButton_Click(object sender, EventArgs e) {
 
         }
     }
