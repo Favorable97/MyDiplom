@@ -61,9 +61,28 @@ namespace Diplom {
                 index++;
             }
         }
-
+        double tList = 4;
+        double tVector = 2;
+        public double myWin;
         private void CalcWinButton_Click(object sender, EventArgs e) {
-
+            //CalcWin1();
+            //CalcWin2();
         }
+        private void CalcWin1() {
+            for (int i = 0; i < MyTable.RowCount; i++)
+                myWin += 1 * Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * (tList - tVector);
+
+            labelAWithWin.Text += myWin;
+        }
+
+        private void CalcWin2() {
+            for (int i = 0; i < MyTable.RowCount; i++) {
+                if (Convert.ToBoolean(MyTable.Rows[i].Cells[0]) == true) {
+                    myWin += 1 * Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * (tList - tVector);
+                }
+            }
+            labelAWithWin.Text += myWin;
+        }
+        
     }
 }
