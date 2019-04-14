@@ -65,7 +65,7 @@ namespace Diplom {
         double tVector = 2;
         public double myWin;
         private void CalcWinButton_Click(object sender, EventArgs e) {
-            //CalcWin1();
+            CalcWin1();
             //CalcWin2();
         }
         private void CalcWin1() {
@@ -77,7 +77,7 @@ namespace Diplom {
 
         private void CalcWin2() {
             for (int i = 0; i < MyTable.RowCount; i++) {
-                if (Convert.ToBoolean(MyTable.Rows[i].Cells[0]) == true) {
+                if (Convert.ToBoolean(MyTable.Rows[i].Cells[0].Value) == true) {
                     myWin += 1 * Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * (tList - tVector);
                 }
             }
