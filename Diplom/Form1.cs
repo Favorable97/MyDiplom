@@ -61,20 +61,52 @@ namespace Diplom {
                 index++;
             }
         }
+
         double tList = 4;
         double tVector = 2;
         public double myWin;
         private void CalcWinButton_Click(object sender, EventArgs e) {
-            CalcWin1();
+            //CalcWin1();
             //CalcWin2();
+
+            byte[] perebor = new byte[informationMas.Count];
+            
+            //bool flag2 = false;
+            
+            for (byte i = 0; i < perebor.Length; i++)
+                perebor[i] = 0;
+            int count = 0;
+            while (NextSet(perebor, perebor.Length, count)) {
+                count++;
+            }
+
         }
+
+        bool NextSet(byte[] perebor, int n, int count) {
+            if (count == 0)
+                return true;
+            int ost = 1;
+            bool flag1 = true;
+            for (int i = perebor.Length - 1; i >= 0; i--) {
+                if ((perebor[i] == 0) && (ost == 1)) { perebor[i] = 1; ost = 0; }
+                if ((perebor[i] == 1) && (ost == 1)) { perebor[i] = 0; ost = 1; }
+            }
+            ost = 1;
+            flag1 = true;
+            for (int i = perebor.Length - 1; i >= 0; i--) { if (perebor[i] == 0) { flag1 = false; } }
+
+            if (flag1 == true)
+                return false;
+
+            return true;
+        }
+
         private void CalcWin1() {
             for (int i = 0; i < MyTable.RowCount; i++)
                 myWin += 1 * Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * (tList - tVector);
 
             labelAWithWin.Text += myWin;
         }
-
         private void CalcWin2() {
             for (int i = 0; i < MyTable.RowCount; i++) {
                 if (Convert.ToBoolean(MyTable.Rows[i].Cells[0].Value) == true) {

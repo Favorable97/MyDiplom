@@ -35,22 +35,19 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CalculationWin = new System.Windows.Forms.GroupBox();
-            this.LimitMemory = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.CalcWinButton = new System.Windows.Forms.Button();
+            this.labelAWithWin = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.CheckCondition = new System.Windows.Forms.GroupBox();
-            this.labelAWithWin = new System.Windows.Forms.Label();
-            this.CalcWinButton = new System.Windows.Forms.Button();
+            this.LimitMemory = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MyTable)).BeginInit();
             this.CalculationWin.SuspendLayout();
-            this.CheckCondition.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -103,6 +100,7 @@
             this.MyTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.MyTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.MyTable.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.MyTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.MyTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.MyTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -113,7 +111,7 @@
             this.MyTable.Location = new System.Drawing.Point(2, 135);
             this.MyTable.Name = "MyTable";
             this.MyTable.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.MyTable.Size = new System.Drawing.Size(470, 73);
+            this.MyTable.Size = new System.Drawing.Size(517, 214);
             this.MyTable.TabIndex = 4;
             this.MyTable.Visible = false;
             // 
@@ -154,6 +152,8 @@
             // CalculationWin
             // 
             this.CalculationWin.Controls.Add(this.CalcWinButton);
+            this.CalculationWin.Controls.Add(this.LimitMemory);
+            this.CalculationWin.Controls.Add(this.label7);
             this.CalculationWin.Controls.Add(this.labelAWithWin);
             this.CalculationWin.Controls.Add(this.label6);
             this.CalculationWin.Controls.Add(this.label5);
@@ -170,21 +170,25 @@
             this.CalculationWin.Text = "Данные для подсчёта выигрыша";
             this.CalculationWin.Visible = false;
             // 
-            // LimitMemory
+            // CalcWinButton
             // 
-            this.LimitMemory.Location = new System.Drawing.Point(39, 35);
-            this.LimitMemory.Name = "LimitMemory";
-            this.LimitMemory.Size = new System.Drawing.Size(29, 22);
-            this.LimitMemory.TabIndex = 7;
+            this.CalcWinButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CalcWinButton.Location = new System.Drawing.Point(147, 30);
+            this.CalcWinButton.Name = "CalcWinButton";
+            this.CalcWinButton.Size = new System.Drawing.Size(137, 46);
+            this.CalcWinButton.TabIndex = 7;
+            this.CalcWinButton.Text = "Рассчитать выигрыш";
+            this.CalcWinButton.UseVisualStyleBackColor = true;
+            this.CalcWinButton.Click += new System.EventHandler(this.CalcWinButton_Click);
             // 
-            // label7
+            // labelAWithWin
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 41);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 16);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "V = ";
+            this.labelAWithWin.AutoSize = true;
+            this.labelAWithWin.Location = new System.Drawing.Point(9, 140);
+            this.labelAWithWin.Name = "labelAWithWin";
+            this.labelAWithWin.Size = new System.Drawing.Size(33, 16);
+            this.labelAWithWin.TabIndex = 6;
+            this.labelAWithWin.Text = "F = ";
             // 
             // label6
             // 
@@ -242,55 +246,27 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "s";
             // 
-            // button1
+            // LimitMemory
             // 
-            this.button1.Location = new System.Drawing.Point(11, 76);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 36);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Анализ";
-            this.button1.UseVisualStyleBackColor = true;
+            this.LimitMemory.Location = new System.Drawing.Point(57, 96);
+            this.LimitMemory.Name = "LimitMemory";
+            this.LimitMemory.Size = new System.Drawing.Size(29, 22);
+            this.LimitMemory.TabIndex = 7;
             // 
-            // CheckCondition
+            // label7
             // 
-            this.CheckCondition.Controls.Add(this.button1);
-            this.CheckCondition.Controls.Add(this.LimitMemory);
-            this.CheckCondition.Controls.Add(this.label7);
-            this.CheckCondition.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CheckCondition.Location = new System.Drawing.Point(545, 200);
-            this.CheckCondition.Name = "CheckCondition";
-            this.CheckCondition.Size = new System.Drawing.Size(333, 135);
-            this.CheckCondition.TabIndex = 6;
-            this.CheckCondition.TabStop = false;
-            this.CheckCondition.Text = "Данные для проверки";
-            this.CheckCondition.Visible = false;
-            // 
-            // labelAWithWin
-            // 
-            this.labelAWithWin.AutoSize = true;
-            this.labelAWithWin.Location = new System.Drawing.Point(8, 99);
-            this.labelAWithWin.Name = "labelAWithWin";
-            this.labelAWithWin.Size = new System.Drawing.Size(33, 16);
-            this.labelAWithWin.TabIndex = 6;
-            this.labelAWithWin.Text = "F = ";
-            // 
-            // CalcWinButton
-            // 
-            this.CalcWinButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CalcWinButton.Location = new System.Drawing.Point(147, 30);
-            this.CalcWinButton.Name = "CalcWinButton";
-            this.CalcWinButton.Size = new System.Drawing.Size(137, 46);
-            this.CalcWinButton.TabIndex = 7;
-            this.CalcWinButton.Text = "Рассчитать выигрыш";
-            this.CalcWinButton.UseVisualStyleBackColor = true;
-            this.CalcWinButton.Click += new System.EventHandler(this.CalcWinButton_Click);
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(9, 102);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 16);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "V = ";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1179, 413);
-            this.Controls.Add(this.CheckCondition);
             this.Controls.Add(this.CalculationWin);
             this.Controls.Add(this.MyTable);
             this.Controls.Add(this.CodeAnalysis);
@@ -303,8 +279,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.MyTable)).EndInit();
             this.CalculationWin.ResumeLayout(false);
             this.CalculationWin.PerformLayout();
-            this.CheckCondition.ResumeLayout(false);
-            this.CheckCondition.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -334,8 +308,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button CalcWinButton;
         private System.Windows.Forms.Label labelAWithWin;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox CheckCondition;
     }
 }
 
