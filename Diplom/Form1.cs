@@ -65,21 +65,53 @@ namespace Diplom {
         double tList = 4;
         double tVector = 2;
         public double myWin;
+        double v, f, v1, v2;
         private void CalcWinButton_Click(object sender, EventArgs e) {
             //CalcWin1();
             //CalcWin2();
-
+            f = int.MinValue;
+            byte[] perebWin = new byte[informationMas.Count];
+            v1 = 0;
+            v = Convert.ToDouble(LimitMemory.Text);
             byte[] perebor = new byte[informationMas.Count];
-            
-            //bool flag2 = false;
             
             for (byte i = 0; i < perebor.Length; i++)
                 perebor[i] = 0;
             int count = 0;
             while (NextSet(perebor, perebor.Length, count)) {
+                double tmpF = 0;
+                v1 = 0;
+                for (int i = 0; i < perebor.Length; i++) {
+                    if (perebor[i] == 0) {
+                        v1 += Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * 4;
+                        tmpF += Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * (tVector - tList);
+                    }
+                    else {
+                        v1 += 1.5 * Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * 4;
+                        tmpF += Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * (tList - tVector);
+                    }
+                }
+                if (v1 <= v && f < tmpF) {
+                    f = tmpF;
+                    v2 = v1;
+                    Array.Copy(perebor, perebWin, perebor.Length);
+                }
                 count++;
             }
 
+            for (int i = 0; i < perebor.Length; i++) {
+                if (perebWin[i] == 0) {
+                    MyTable.Rows[i].Cells[3].Style.BackColor = Color.Red;
+                    MyTable.Rows[i].Cells[3].Value = "нет";
+                }
+                else {
+                    MyTable.Rows[i].Cells[3].Style.BackColor = Color.Green;
+                    MyTable.Rows[i].Cells[3].Value = "да";
+                }
+                    
+            }
+            labelAWithWin.Text = "";
+            labelAWithWin.Text = "F = " + f + "затрачено " + v2;
         }
 
         bool NextSet(byte[] perebor, int n, int count) {

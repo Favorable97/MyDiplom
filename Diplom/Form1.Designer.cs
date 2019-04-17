@@ -36,6 +36,8 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CalculationWin = new System.Windows.Forms.GroupBox();
             this.CalcWinButton = new System.Windows.Forms.Button();
+            this.LimitMemory = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.labelAWithWin = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -43,8 +45,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.LimitMemory = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MyTable)).BeginInit();
             this.CalculationWin.SuspendLayout();
@@ -181,14 +181,29 @@
             this.CalcWinButton.UseVisualStyleBackColor = true;
             this.CalcWinButton.Click += new System.EventHandler(this.CalcWinButton_Click);
             // 
+            // LimitMemory
+            // 
+            this.LimitMemory.Location = new System.Drawing.Point(57, 96);
+            this.LimitMemory.Name = "LimitMemory";
+            this.LimitMemory.Size = new System.Drawing.Size(54, 22);
+            this.LimitMemory.TabIndex = 7;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(9, 102);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 16);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "V = ";
+            // 
             // labelAWithWin
             // 
             this.labelAWithWin.AutoSize = true;
             this.labelAWithWin.Location = new System.Drawing.Point(9, 140);
             this.labelAWithWin.Name = "labelAWithWin";
-            this.labelAWithWin.Size = new System.Drawing.Size(33, 16);
+            this.labelAWithWin.Size = new System.Drawing.Size(0, 16);
             this.labelAWithWin.TabIndex = 6;
-            this.labelAWithWin.Text = "F = ";
             // 
             // label6
             // 
@@ -245,22 +260,6 @@
             this.label1.Size = new System.Drawing.Size(16, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "s";
-            // 
-            // LimitMemory
-            // 
-            this.LimitMemory.Location = new System.Drawing.Point(57, 96);
-            this.LimitMemory.Name = "LimitMemory";
-            this.LimitMemory.Size = new System.Drawing.Size(29, 22);
-            this.LimitMemory.TabIndex = 7;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(9, 102);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 16);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "V = ";
             // 
             // Form1
             // 
