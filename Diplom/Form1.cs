@@ -82,11 +82,7 @@ namespace Diplom {
                 double tmpF = 0;
                 v1 = 0;
                 for (int i = 0; i < perebor.Length; i++) {
-                    if (perebor[i] == 0) {
-                        v1 += Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * 4;
-                        tmpF += Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * (tVector - tList);
-                    }
-                    else {
+                    if (perebor[i] == 1) {
                         v1 += 1.5 * Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * 4;
                         tmpF += Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * (tList - tVector);
                     }
