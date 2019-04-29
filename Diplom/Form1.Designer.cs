@@ -35,6 +35,7 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CalculationWin = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.AutoCalcWinButton = new System.Windows.Forms.Button();
             this.LimitMemory = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MyTable)).BeginInit();
             this.CalculationWin.SuspendLayout();
@@ -168,11 +168,20 @@
             this.CalculationWin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CalculationWin.Location = new System.Drawing.Point(545, 12);
             this.CalculationWin.Name = "CalculationWin";
-            this.CalculationWin.Size = new System.Drawing.Size(290, 174);
+            this.CalculationWin.Size = new System.Drawing.Size(347, 174);
             this.CalculationWin.TabIndex = 5;
             this.CalculationWin.TabStop = false;
             this.CalculationWin.Text = "Данные для подсчёта выигрыша";
             this.CalculationWin.Visible = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(117, 107);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(43, 16);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "байт";
             // 
             // AutoCalcWinButton
             // 
@@ -187,9 +196,9 @@
             // 
             // LimitMemory
             // 
-            this.LimitMemory.Location = new System.Drawing.Point(57, 101);
+            this.LimitMemory.Location = new System.Drawing.Point(49, 101);
             this.LimitMemory.Name = "LimitMemory";
-            this.LimitMemory.Size = new System.Drawing.Size(54, 22);
+            this.LimitMemory.Size = new System.Drawing.Size(62, 22);
             this.LimitMemory.TabIndex = 7;
             // 
             // label7
@@ -264,15 +273,6 @@
             this.label1.Size = new System.Drawing.Size(16, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "s";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(117, 107);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(43, 16);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "байт";
             // 
             // Form1
             // 

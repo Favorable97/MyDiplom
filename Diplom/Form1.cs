@@ -69,9 +69,8 @@ namespace Diplom {
 
         double tList = 4;
         double tVector = 2;
-        public double myWin = 0;
-        public double myWinAuto = int.MinValue;
-        double v, tmpV, resultVAuto, resultV;
+        public double myWin;
+        double v, tmpV, resultV;
         int k;
         private void MyTable_CurrentCellDirtyStateChanged(object sender, EventArgs e) {
             if (Convert.ToInt16(MyTable.SelectedCells[0].ColumnIndex) != 0)
@@ -82,7 +81,6 @@ namespace Diplom {
                 return;
             else {
                 k++;
-                
                 v = Convert.ToDouble(LimitMemory.Text);
                 int index = MyTable.SelectedCells[0].RowIndex;
                 if (Convert.ToBoolean(MyTable.CurrentCell.Value) == true) {
@@ -103,12 +101,13 @@ namespace Diplom {
                     return;
                 }
                 else {
-                    resultV -= 1.5 * Convert.ToInt16(MyTable.Rows[index].Cells[4].Value) * 4;
-                    myWin -= Convert.ToInt16(MyTable.Rows[index].Cells[4].Value) * (tList - tVector);
+                    double tmp = 1.5 * Convert.ToInt32(MyTable.Rows[index].Cells[4].Value) * 4; 
+                    resultV -= 1.5 * Convert.ToInt32(MyTable.Rows[index].Cells[4].Value) * 4;
+                    myWin -= Convert.ToInt32(MyTable.Rows[index].Cells[4].Value) * (tList - tVector);
 
                     if (resultV <= v) {
                         labelAWithWin.Text = "";
-                        labelAWithWin.Text = "F = " + myWin * 2 + " затрачено " + resultV + " байт";
+                        labelAWithWin.Text = "F = " + myWin + " затрачено " + resultV + " байт";
                     }
                     else {
                         labelAWithWin.Text = "";
@@ -124,18 +123,19 @@ namespace Diplom {
             
         }
 
-        private void MyTable_CellEndEdit(object sender, DataGridViewCellEventArgs e) {
-            
-        }
-
         private void AutoCalcWinButton_Click(object sender, EventArgs e) {
             byte[] perebWin = new byte[informationMas.Count];
+            myWin = int.MinValue;
+            resultV = 0;
             tmpV = 0;
             v = Convert.ToDouble(LimitMemory.Text);
             byte[] perebor = new byte[informationMas.Count];
             
-            for (byte i = 0; i < perebor.Length; i++)
+            for (byte i = 0; i < perebor.Length; i++) {
                 perebor[i] = 0;
+                MyTable.Rows[0].Cells[i].Value = 0;
+            }
+                
             int count = 0;
             while (NextSet(perebor, perebor.Length, count)) {
                 double tmpF = 0;
@@ -146,9 +146,9 @@ namespace Diplom {
                         tmpF += Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * (tList - tVector);
                     }
                 }
-                if (tmpV <= v && myWinAuto < tmpF) {
-                    myWinAuto = tmpF;
-                    resultVAuto = tmpV;
+                if (tmpV <= v && myWin < tmpF) {
+                    myWin = tmpF;
+                    resultV = tmpV;
                     Array.Copy(perebor, perebWin, perebor.Length);
                 }
                 count++;
@@ -167,7 +167,7 @@ namespace Diplom {
                     
             }
             labelAWithWin.Text = "";
-            labelAWithWin.Text = "F = " + myWinAuto + "затрачено " + resultVAuto + " байт";
+            labelAWithWin.Text = "F = " + myWin + " затрачено " + resultV + " байт";
         }
         bool finishFlag = true;
         bool NextSet(byte[] perebor, int n, int count) {
