@@ -12,9 +12,7 @@ namespace Diplom {
         public Form1() {
             InitializeComponent();
             OpenFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
-            //ToChooseFile.Click += ToChooseFile_Click;
             CodeAnalysis.Click += CodeAnalysis_Click;
-            //MyTable.CurrentCellDirtyStateChanged += MyTable_CurrentCellDirtyStateChanged;
         }
         //List<string> lstWithNameList; // контейнер, где хранятся имена всех контейнеров C++
         //List<string> lstWithBlocks;  контейнер, где хранятся блоки со всеми циклами C++
@@ -65,6 +63,10 @@ namespace Diplom {
             for (int i = 0; i < informationMas.Count; i++) {
                 MyTable.Rows[i].Cells[0].Value = false;
             }
+
+            for (int i = 0; i < informationMas.Count; i++) {
+                MyTable.Rows[i].Cells[3].Value = "???";
+            }
         }
 
         double tList = 4;
@@ -84,8 +86,9 @@ namespace Diplom {
                 v = Convert.ToDouble(LimitMemory.Text);
                 int index = MyTable.SelectedCells[0].RowIndex;
                 if (Convert.ToBoolean(MyTable.CurrentCell.Value) == true) {
-                    resultV += 1.5 * Convert.ToInt16(MyTable.Rows[index].Cells[4].Value) * 4;
-                    myWin += Convert.ToInt16(MyTable.Rows[index].Cells[4].Value) * (tList - tVector);
+                    resultV += 1.5 * Convert.ToInt16(MyTable.Rows[index].Cells[3].Value) * 4;
+                    MyTable.Rows[index].Cells[5].Value = 1.5 * Convert.ToInt16(MyTable.Rows[index].Cells[3].Value) * 4;
+                    myWin += Convert.ToInt16(MyTable.Rows[index].Cells[3].Value) * (tList - tVector);
                     if (resultV <= v) {
                         labelAWithWin.Text = "";
                         labelAWithWin.Text = "F = " + myWin + " затрачено " + resultV + " байт";
@@ -94,17 +97,12 @@ namespace Diplom {
                         labelAWithWin.Text = "";
                         labelAWithWin.Text = "Ограничение не выполняется, " + " затрачено: " + resultV + " байт";
                     }
-                    MyTable.Rows[index].Cells[0].Value = true;
-                    MyTable.Rows[index].Cells[3].Style.BackColor = Color.Green;
-                    MyTable.Rows[index].Cells[3].Value = "да";
-
                     return;
                 }
                 else {
-                    double tmp = 1.5 * Convert.ToInt32(MyTable.Rows[index].Cells[4].Value) * 4; 
-                    resultV -= 1.5 * Convert.ToInt32(MyTable.Rows[index].Cells[4].Value) * 4;
+                    resultV -= 1.5 * Convert.ToInt32(MyTable.Rows[index].Cells[3].Value) * 4;
                     myWin -= Convert.ToInt32(MyTable.Rows[index].Cells[4].Value) * (tList - tVector);
-
+                    MyTable.Rows[index].Cells[5].Value = 0;
                     if (resultV <= v) {
                         labelAWithWin.Text = "";
                         labelAWithWin.Text = "F = " + myWin + " затрачено " + resultV + " байт";
@@ -113,10 +111,6 @@ namespace Diplom {
                         labelAWithWin.Text = "";
                         labelAWithWin.Text = "Ограничение не выполняется, " + " затрачено: " + resultV + " байт";
                     }
-                    MyTable.Rows[index].Cells[0].Value = false;
-                    MyTable.Rows[index].Cells[3].Style.BackColor = Color.Red;
-                    MyTable.Rows[index].Cells[3].Value = "нет";
-                    //MyTable.EndEdit();
                     return;
                 }
             }
@@ -128,27 +122,33 @@ namespace Diplom {
             myWin = int.MinValue;
             resultV = 0;
             tmpV = 0;
+            double[] arrayV = new double[informationMas.Count];
             v = Convert.ToDouble(LimitMemory.Text);
             byte[] perebor = new byte[informationMas.Count];
             
             for (byte i = 0; i < perebor.Length; i++) {
                 perebor[i] = 0;
-                MyTable.Rows[0].Cells[i].Value = 0;
+                MyTable.Rows[i].Cells[0].Value = 0;
             }
                 
             int count = 0;
             while (NextSet(perebor, perebor.Length, count)) {
                 double tmpF = 0;
                 tmpV = 0;
+                double[] tmpArr = new double[informationMas.Count];
                 for (int i = 0; i < perebor.Length; i++) {
                     if (perebor[i] == 1) {
-                        tmpV += 1.5 * Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * 4;
-                        tmpF += Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * (tList - tVector);
+                        tmpV += 1.5 * Convert.ToInt16(MyTable.Rows[i].Cells[3].Value) * 4;
+                        tmpF += Convert.ToInt16(MyTable.Rows[i].Cells[3].Value) * (tList - tVector);
+                        tmpArr[i] = 1.5 * Convert.ToInt16(MyTable.Rows[i].Cells[3].Value) * 4;
                     }
+                    else
+                        tmpArr[i] = 0;
                 }
                 if (tmpV <= v && myWin < tmpF) {
                     myWin = tmpF;
                     resultV = tmpV;
+                    Array.Copy(tmpArr, arrayV, arrayV.Length);
                     Array.Copy(perebor, perebWin, perebor.Length);
                 }
                 count++;
@@ -156,19 +156,44 @@ namespace Diplom {
 
             for (int i = 0; i < perebor.Length; i++) {
                 if (perebWin[i] == 0) {
-                    MyTable.Rows[i].Cells[3].Style.BackColor = Color.Red;
-                    MyTable.Rows[i].Cells[3].Value = "нет";
+                    MyTable.Rows[i].Cells[6].Style.BackColor = Color.Red;
+                    MyTable.Rows[i].Cells[6].Value = "нет";
                 }
                 else {
                     MyTable.Rows[i].Cells[0].Value = true;
-                    MyTable.Rows[i].Cells[3].Style.BackColor = Color.Green;
-                    MyTable.Rows[i].Cells[3].Value = "да";
+                    MyTable.Rows[i].Cells[6].Style.BackColor = Color.Green;
+                    MyTable.Rows[i].Cells[6].Value = "да";
                 }
-                    
+                MyTable.Rows[i].Cells[5].Value = arrayV[i];
             }
             labelAWithWin.Text = "";
             labelAWithWin.Text = "F = " + myWin + " затрачено " + resultV + " байт";
         }
+
+        private void SList_Enter(object sender, EventArgs e) {
+            SList.Text = "";
+            SList.ForeColor = Color.Black;
+        }
+
+        private void SList_Leave(object sender, EventArgs e) {
+            if (SList.Text == "") {
+                SList.Text = "1";
+                SList.ForeColor = Color.Silver;
+            }
+        }
+
+        private void SVector_Enter(object sender, EventArgs e) {
+            SVector.Text = "";
+            SVector.ForeColor = Color.Black;
+        }
+
+        private void SVector_Leave(object sender, EventArgs e) {
+            if (SVector.Text == "") {
+                SVector.Text = "2";
+                SVector.ForeColor = Color.Silver;
+            }
+        }
+
         bool finishFlag = true;
         bool NextSet(byte[] perebor, int n, int count) {
             if (count == 0)

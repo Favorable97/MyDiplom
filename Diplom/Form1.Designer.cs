@@ -32,9 +32,13 @@
             this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CalculationWin = new System.Windows.Forms.GroupBox();
+            this.SVector = new System.Windows.Forms.TextBox();
+            this.SList = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.AutoCalcWinButton = new System.Windows.Forms.Button();
             this.LimitMemory = new System.Windows.Forms.TextBox();
@@ -98,8 +102,6 @@
             // 
             this.MyTable.AllowUserToAddRows = false;
             this.MyTable.AllowUserToDeleteRows = false;
-            this.MyTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.MyTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.MyTable.BackgroundColor = System.Drawing.SystemColors.Control;
             this.MyTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.MyTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -107,12 +109,14 @@
             this.Column1,
             this.Column2,
             this.Column3,
-            this.Column4,
-            this.Column5});
-            this.MyTable.Location = new System.Drawing.Point(2, 135);
+            this.Column5,
+            this.Column6,
+            this.Column7,
+            this.Column4});
+            this.MyTable.Location = new System.Drawing.Point(2, 138);
             this.MyTable.Name = "MyTable";
             this.MyTable.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.MyTable.Size = new System.Drawing.Size(483, 214);
+            this.MyTable.Size = new System.Drawing.Size(541, 214);
             this.MyTable.TabIndex = 4;
             this.MyTable.Visible = false;
             this.MyTable.CurrentCellDirtyStateChanged += new System.EventHandler(this.MyTable_CurrentCellDirtyStateChanged);
@@ -121,7 +125,7 @@
             // 
             this.Column1.HeaderText = "";
             this.Column1.Name = "Column1";
-            this.Column1.Width = 5;
+            this.Column1.Width = 20;
             // 
             // Column2
             // 
@@ -136,24 +140,37 @@
             this.Column3.HeaderText = "Номер строки";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            this.Column3.Width = 96;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Рекомендация";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 107;
+            this.Column3.Width = 60;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "Количество элементов";
             this.Column5.Name = "Column5";
-            this.Column5.Width = 136;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "tList - tVector";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "V";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Width = 35;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Рекомендации";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // CalculationWin
             // 
             this.CalculationWin.AutoSize = true;
+            this.CalculationWin.Controls.Add(this.SVector);
+            this.CalculationWin.Controls.Add(this.SList);
             this.CalculationWin.Controls.Add(this.label8);
             this.CalculationWin.Controls.Add(this.AutoCalcWinButton);
             this.CalculationWin.Controls.Add(this.LimitMemory);
@@ -166,13 +183,35 @@
             this.CalculationWin.Controls.Add(this.label2);
             this.CalculationWin.Controls.Add(this.label1);
             this.CalculationWin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CalculationWin.Location = new System.Drawing.Point(545, 12);
+            this.CalculationWin.Location = new System.Drawing.Point(572, 20);
             this.CalculationWin.Name = "CalculationWin";
             this.CalculationWin.Size = new System.Drawing.Size(347, 174);
             this.CalculationWin.TabIndex = 5;
             this.CalculationWin.TabStop = false;
             this.CalculationWin.Text = "Данные для подсчёта выигрыша";
             this.CalculationWin.Visible = false;
+            // 
+            // SVector
+            // 
+            this.SVector.ForeColor = System.Drawing.Color.Silver;
+            this.SVector.Location = new System.Drawing.Point(84, 60);
+            this.SVector.Name = "SVector";
+            this.SVector.Size = new System.Drawing.Size(39, 22);
+            this.SVector.TabIndex = 10;
+            this.SVector.Text = "2";
+            this.SVector.Enter += new System.EventHandler(this.SVector_Enter);
+            this.SVector.Leave += new System.EventHandler(this.SVector_Leave);
+            // 
+            // SList
+            // 
+            this.SList.ForeColor = System.Drawing.Color.Silver;
+            this.SList.Location = new System.Drawing.Point(65, 27);
+            this.SList.Name = "SList";
+            this.SList.Size = new System.Drawing.Size(39, 22);
+            this.SList.TabIndex = 9;
+            this.SList.Text = "1";
+            this.SList.Enter += new System.EventHandler(this.SList_Enter);
+            this.SList.Leave += new System.EventHandler(this.SList_Leave);
             // 
             // label8
             // 
@@ -186,7 +225,7 @@
             // AutoCalcWinButton
             // 
             this.AutoCalcWinButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AutoCalcWinButton.Location = new System.Drawing.Point(147, 30);
+            this.AutoCalcWinButton.Location = new System.Drawing.Point(158, 30);
             this.AutoCalcWinButton.Name = "AutoCalcWinButton";
             this.AutoCalcWinButton.Size = new System.Drawing.Size(137, 46);
             this.AutoCalcWinButton.TabIndex = 7;
@@ -223,9 +262,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(54, 62);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(32, 16);
+            this.label6.Size = new System.Drawing.Size(24, 16);
             this.label6.TabIndex = 5;
-            this.label6.Text = " = 2";
+            this.label6.Text = " = ";
             // 
             // label5
             // 
@@ -251,9 +290,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(35, 31);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 16);
+            this.label3.Size = new System.Drawing.Size(24, 16);
             this.label3.TabIndex = 2;
-            this.label3.Text = " = 1";
+            this.label3.Text = " = ";
             // 
             // label2
             // 
@@ -304,11 +343,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Button CodeAnalysis;
         private System.Windows.Forms.DataGridView MyTable;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.GroupBox CalculationWin;
         private System.Windows.Forms.TextBox LimitMemory;
         private System.Windows.Forms.Label label7;
@@ -321,6 +355,15 @@
         private System.Windows.Forms.Button AutoCalcWinButton;
         private System.Windows.Forms.Label labelAWithWin;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.TextBox SVector;
+        private System.Windows.Forms.TextBox SList;
     }
 }
 
