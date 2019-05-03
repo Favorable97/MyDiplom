@@ -4,10 +4,10 @@
 int main()
 {
 	std::list<int> numbers1 = { 1, 2, 3, 4, 5 };
-	std::list<int> list2(5); 
-
-	std::list<int> numbers2 = { 1, 2, 3, 4, 5 };
-	for (std::list<double>::iterator *it = numbers1.begin(); it != numbers1.end(); ++it){
+	std::list<double> numbers2;
+	std::list<char> numbers3 = { 1, 2, 3, 4, 5 };
+	std::list<string> numbers4 = { 1, 2, 3, 4, 5 };
+	for (std::list<int>::iterator *it = numbers1.begin(); it != numbers1.end(); ++it){
 		*it = *it + 1;
 	}
 	int val = 0;
@@ -16,11 +16,11 @@ int main()
 		val++;
 	}
 
-	for (std::list<double>::iterator *it3 = numbers2.begin(); it3 != numbers2.end(); ++it3){
+	for (std::list<char>::iterator *it3 = numbers3.begin(); it3 != numbers3.end(); ++it3){
 		*it3 = *it3 + 1;
 	}
 
-	for (std::list<double>::iterator *it4 = numbers2.begin(); it4 != numbers2.end(); ++it4){
+	for (std::list<string>::iterator *it4 = numbers4.begin(); it4 != numbers4.end(); ++it4){
 		*it4 = *it4 + 1;
 	}	
 	

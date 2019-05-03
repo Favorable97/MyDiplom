@@ -29,13 +29,6 @@
             this.ToChooseFile = new System.Windows.Forms.Button();
             this.CodeAnalysis = new System.Windows.Forms.Button();
             this.MyTable = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CalculationWin = new System.Windows.Forms.GroupBox();
             this.SVector = new System.Windows.Forms.TextBox();
             this.SList = new System.Windows.Forms.TextBox();
@@ -50,6 +43,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MyTable)).BeginInit();
             this.CalculationWin.SuspendLayout();
@@ -108,6 +109,7 @@
             this.MyTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
+            this.Column8,
             this.Column3,
             this.Column5,
             this.Column6,
@@ -116,55 +118,10 @@
             this.MyTable.Location = new System.Drawing.Point(2, 138);
             this.MyTable.Name = "MyTable";
             this.MyTable.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.MyTable.Size = new System.Drawing.Size(541, 214);
+            this.MyTable.Size = new System.Drawing.Size(584, 214);
             this.MyTable.TabIndex = 4;
             this.MyTable.Visible = false;
             this.MyTable.CurrentCellDirtyStateChanged += new System.EventHandler(this.MyTable_CurrentCellDirtyStateChanged);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 20;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Итератор";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column2.Width = 80;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Номер строки";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 60;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Количество элементов";
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "tList - tVector";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "V";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 35;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Рекомендации";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
             // 
             // CalculationWin
             // 
@@ -183,7 +140,7 @@
             this.CalculationWin.Controls.Add(this.label2);
             this.CalculationWin.Controls.Add(this.label1);
             this.CalculationWin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CalculationWin.Location = new System.Drawing.Point(572, 20);
+            this.CalculationWin.Location = new System.Drawing.Point(605, 20);
             this.CalculationWin.Name = "CalculationWin";
             this.CalculationWin.Size = new System.Drawing.Size(347, 174);
             this.CalculationWin.TabIndex = 5;
@@ -313,6 +270,59 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "s";
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 20;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Итератор";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column2.Width = 80;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Тип";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Width = 60;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Номер строки";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 60;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Количество элементов";
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 80;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "tList - tVector";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "V";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Width = 35;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Рекомендации";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -355,15 +365,16 @@
         private System.Windows.Forms.Button AutoCalcWinButton;
         private System.Windows.Forms.Label labelAWithWin;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox SVector;
+        private System.Windows.Forms.TextBox SList;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.TextBox SVector;
-        private System.Windows.Forms.TextBox SList;
     }
 }
 

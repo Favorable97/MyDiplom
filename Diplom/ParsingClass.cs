@@ -9,9 +9,9 @@ namespace Diplom {
     class ParsingClass {
         private static string FilePath { get; set; }
         private static byte[] mas = new byte[2]; // 0 - открывающие скобки, 1 - закрывающие
-        public List<string> lstWithBlocks = new List<string>(); // контейнер с блоками циклов
-        //public List<string> lstWithList = new List<string>(); // контейнер, где хранятся имена всех контейнеров C++
-        public List<int> indexList = new List<int>(); // контейнер с номерами строк циклов
+        private List<string> lstWithBlocks = new List<string>(); // контейнер с блоками циклов
+        public List<string> lstWithTypeIter = new List<string>(); // контейнер, где хранятся типы итераторов/контейнеров C++
+        private List<int> indexList = new List<int>(); // контейнер с номерами строк циклов
         public Dictionary<string, int> informationMas = new Dictionary<string, int>();
         string textInFile = "";
 
@@ -88,7 +88,7 @@ namespace Diplom {
         /*
          * Работает не правильно, если элементы и добавляются, и идёт обращение 
          */
-        public void SearchIterators() {
+        private void SearchIterators() {
             for (int i = 0; i < lstWithBlocks.Count; i++) {
                 string strWithArg = lstWithBlocks[i].Substring(lstWithBlocks[i].IndexOf('(') + 1, lstWithBlocks[i].IndexOf(';') - lstWithBlocks[i].IndexOf('(') - 1);
                 int pos1 = strWithArg.IndexOf(' ');
@@ -100,6 +100,7 @@ namespace Diplom {
                     for (int j = 2; j < masString.Length; j++) {
                         if (masString[j].Contains(nameIterator)) {
                             informationMas.Add(nameIterator, indexList[i]);
+                            lstWithTypeIter.Add(TypeDefinitionIter(i));
                             break;
                         }
                     }
@@ -107,5 +108,13 @@ namespace Diplom {
             }
         }
 
+        private string TypeDefinitionIter(int index) {
+            string strWithArg = lstWithBlocks[index].Substring(lstWithBlocks[index].IndexOf('(') + 1, lstWithBlocks[index].IndexOf(';') - lstWithBlocks[index].IndexOf('(') - 1);
+            int pos1 = strWithArg.IndexOf('<');
+            int pos2 = strWithArg.IndexOf('>');
+            string typeIterator = strWithArg.Substring(pos1 + 1, pos2 - pos1 - 1);
+            return typeIterator;
+        }
+        
     }
 }

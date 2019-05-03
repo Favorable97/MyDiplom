@@ -15,7 +15,7 @@ namespace Diplom {
             CodeAnalysis.Click += CodeAnalysis_Click;
         }
         //List<string> lstWithNameList; // контейнер, где хранятся имена всех контейнеров C++
-        //List<string> lstWithBlocks;  контейнер, где хранятся блоки со всеми циклами C++
+        List<string> lstWithTypeIter; // контейнер, где хранятся блоки со всеми циклами C++
         Dictionary<string, int> informationMas;
         string filePath;
 
@@ -32,6 +32,7 @@ namespace Diplom {
             ParsingClass parsing = new ParsingClass(filePath);
             parsing.ParsingText();
             informationMas = parsing.informationMas;
+            lstWithTypeIter = parsing.lstWithTypeIter;
             MyTable.Visible = true;
             MyTable.RowCount = informationMas.Count;
             ToFillTable();
@@ -66,6 +67,7 @@ namespace Diplom {
 
             for (int i = 0; i < informationMas.Count; i++) {
                 MyTable.Rows[i].Cells[3].Value = "???";
+                MyTable.Rows[i].Cells[2].Value = lstWithTypeIter[i];
             }
         }
 
