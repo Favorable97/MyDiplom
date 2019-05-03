@@ -63,11 +63,9 @@ namespace Diplom {
             }
             for (int i = 0; i < informationMas.Count; i++) {
                 MyTable.Rows[i].Cells[0].Value = false;
-            }
-
-            for (int i = 0; i < informationMas.Count; i++) {
-                MyTable.Rows[i].Cells[3].Value = "???";
+                MyTable.Rows[i].Cells[4].Value = "???";
                 MyTable.Rows[i].Cells[2].Value = lstWithTypeIter[i];
+                MyTable.Rows[i].Cells[5].Value = ToCalculateDifference(lstWithTypeIter[i]);
             }
         }
 
@@ -88,9 +86,9 @@ namespace Diplom {
                 v = Convert.ToDouble(LimitMemory.Text);
                 int index = MyTable.SelectedCells[0].RowIndex;
                 if (Convert.ToBoolean(MyTable.CurrentCell.Value) == true) {
-                    resultV += 1.5 * Convert.ToInt16(MyTable.Rows[index].Cells[3].Value) * 4;
-                    MyTable.Rows[index].Cells[5].Value = 1.5 * Convert.ToInt16(MyTable.Rows[index].Cells[3].Value) * 4;
-                    myWin += Convert.ToInt16(MyTable.Rows[index].Cells[3].Value) * (tList - tVector);
+                    resultV += 1.5 * Convert.ToInt16(MyTable.Rows[index].Cells[4].Value) * ToDefineType(lstWithTypeIter[index]);
+                    MyTable.Rows[index].Cells[6].Value = 1.5 * Convert.ToInt16(MyTable.Rows[index].Cells[4].Value) * ToDefineType(lstWithTypeIter[index]);
+                    myWin += Convert.ToInt16(MyTable.Rows[index].Cells[4].Value) * ToCalculateDifference(lstWithTypeIter[index]);
                     if (resultV <= v) {
                         labelAWithWin.Text = "";
                         labelAWithWin.Text = "F = " + myWin + " затрачено " + resultV + " байт";
@@ -102,9 +100,9 @@ namespace Diplom {
                     return;
                 }
                 else {
-                    resultV -= 1.5 * Convert.ToInt32(MyTable.Rows[index].Cells[3].Value) * 4;
-                    myWin -= Convert.ToInt32(MyTable.Rows[index].Cells[4].Value) * (tList - tVector);
-                    MyTable.Rows[index].Cells[5].Value = 0;
+                    resultV -= 1.5 * Convert.ToInt32(MyTable.Rows[index].Cells[4].Value) * ToDefineType(lstWithTypeIter[index]);
+                    myWin -= Convert.ToInt32(MyTable.Rows[index].Cells[4].Value) * ToCalculateDifference(lstWithTypeIter[index]);
+                    MyTable.Rows[index].Cells[6].Value = 0;
                     if (resultV <= v) {
                         labelAWithWin.Text = "";
                         labelAWithWin.Text = "F = " + myWin + " затрачено " + resultV + " байт";
@@ -140,9 +138,9 @@ namespace Diplom {
                 double[] tmpArr = new double[informationMas.Count];
                 for (int i = 0; i < perebor.Length; i++) {
                     if (perebor[i] == 1) {
-                        tmpV += 1.5 * Convert.ToInt16(MyTable.Rows[i].Cells[3].Value) * 4;
-                        tmpF += Convert.ToInt16(MyTable.Rows[i].Cells[3].Value) * (tList - tVector);
-                        tmpArr[i] = 1.5 * Convert.ToInt16(MyTable.Rows[i].Cells[3].Value) * 4;
+                        tmpV += 1.5 * Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * ToDefineType(lstWithTypeIter[i]);
+                        tmpF += Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * ToCalculateDifference(lstWithTypeIter[i]);
+                        tmpArr[i] = 1.5 * Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * ToDefineType(lstWithTypeIter[i]);
                     }
                     else
                         tmpArr[i] = 0;
@@ -158,20 +156,63 @@ namespace Diplom {
 
             for (int i = 0; i < perebor.Length; i++) {
                 if (perebWin[i] == 0) {
-                    MyTable.Rows[i].Cells[6].Style.BackColor = Color.Red;
-                    MyTable.Rows[i].Cells[6].Value = "нет";
+                    MyTable.Rows[i].Cells[7].Style.BackColor = Color.Red;
+                    MyTable.Rows[i].Cells[7].Value = "нет";
                 }
                 else {
                     MyTable.Rows[i].Cells[0].Value = true;
-                    MyTable.Rows[i].Cells[6].Style.BackColor = Color.Green;
-                    MyTable.Rows[i].Cells[6].Value = "да";
+                    MyTable.Rows[i].Cells[7].Style.BackColor = Color.Green;
+                    MyTable.Rows[i].Cells[7].Value = "да";
                 }
-                MyTable.Rows[i].Cells[5].Value = arrayV[i];
+                MyTable.Rows[i].Cells[6].Value = arrayV[i];
             }
+                
             labelAWithWin.Text = "";
             labelAWithWin.Text = "F = " + myWin + " затрачено " + resultV + " байт";
         }
 
+        private double ToCalculateDifference(string type) {
+            byte size = 0;
+            switch (type) {
+                case "byte":
+                    size = 1;
+                    break;
+                case "int":
+                    size = 4;
+                    break;
+                case "double":
+                    size = 8;
+                    break;
+                case "float":
+                    size = 4;
+                    break;
+                case "char":
+                    size = 2;
+                    break;
+                default:
+                    size = 4;
+                    break;
+            }
+            double result = (size / Convert.ToInt16(SList.Text)) - (size / Convert.ToInt16(SVector.Text));
+            return result;
+        }
+
+        private int ToDefineType(string type) {
+            switch (type) {
+                case "byte":
+                    return 1;
+                case "int":
+                    return 4;
+                case "double":
+                    return 8;
+                case "float":
+                    return 4;
+                case "char":
+                    return 2;
+                default:
+                    return 4;
+            }
+        }
         private void SList_Enter(object sender, EventArgs e) {
             SList.Text = "";
             SList.ForeColor = Color.Black;

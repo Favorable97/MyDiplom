@@ -107,7 +107,9 @@ namespace Diplom {
                 }
             }
         }
-
+        /*
+         * Определение типа итераторов
+         */
         private string TypeDefinitionIter(int index) {
             string strWithArg = lstWithBlocks[index].Substring(lstWithBlocks[index].IndexOf('(') + 1, lstWithBlocks[index].IndexOf(';') - lstWithBlocks[index].IndexOf('(') - 1);
             int pos1 = strWithArg.IndexOf('<');
