@@ -20,23 +20,35 @@ namespace Diplom {
         string filePath;
 
         private void ToChooseFile_Click(object sender, EventArgs e) {
-            if (OpenFile.ShowDialog() == DialogResult.Cancel)
-                return;
-            filePath = OpenFile.FileName;
-            statusStrip1.Visible = true;
-            toolStripStatusLabel1.Visible = true;
-            toolStripStatusLabel1.Text = filePath;
+            try {
+                if (OpenFile.ShowDialog() == DialogResult.Cancel)
+                    return;
+                filePath = OpenFile.FileName;
+                statusStrip1.Visible = true;
+                toolStripStatusLabel1.Visible = true;
+                toolStripStatusLabel1.Text = filePath;
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Вохникло данное исключение: " + ex.Message); 
+            }
+            
         }
 
         private void CodeAnalysis_Click(object sender, EventArgs e) {
-            ParsingClass parsing = new ParsingClass(filePath);
-            parsing.ParsingText();
-            informationMas = parsing.informationMas;
-            lstWithTypeIter = parsing.lstWithTypeIter;
-            MyTable.Visible = true;
-            MyTable.RowCount = informationMas.Count;
-            ToFillTable();
-            CalculationWin.Visible = true;
+            try {
+                ParsingClass parsing = new ParsingClass(filePath);
+                parsing.ParsingText();
+                informationMas = parsing.informationMas;
+                lstWithTypeIter = parsing.lstWithTypeIter;
+                MyTable.Visible = true;
+                MyTable.RowCount = informationMas.Count;
+                ToFillTable();
+                CalculationWin.Visible = true;
+            }
+            catch(Exception ex) {
+                MessageBox.Show("Вохникло данное исключение: " + ex.Message);
+            }
+                
             #region _Grow_to_
             /*
              * size_type _Grow_to(size_type _Count) const
@@ -69,8 +81,6 @@ namespace Diplom {
             }
         }
 
-        double tList = 4;
-        double tVector = 2;
         public double myWin;
         double v, tmpV, resultV;
         int k;
@@ -123,35 +133,44 @@ namespace Diplom {
             resultV = 0;
             tmpV = 0;
             double[] arrayV = new double[informationMas.Count];
-            v = Convert.ToDouble(LimitMemory.Text);
             byte[] perebor = new byte[informationMas.Count];
-            
-            for (byte i = 0; i < perebor.Length; i++) {
-                perebor[i] = 0;
-                MyTable.Rows[i].Cells[0].Value = 0;
-            }
+            try {
                 
-            int count = 0;
-            while (NextSet(perebor, perebor.Length, count)) {
-                double tmpF = 0;
-                tmpV = 0;
-                double[] tmpArr = new double[informationMas.Count];
-                for (int i = 0; i < perebor.Length; i++) {
-                    if (perebor[i] == 1) {
-                        tmpV += 1.5 * Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * ToDefineType(lstWithTypeIter[i]);
-                        tmpF += Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * ToCalculateDifference(lstWithTypeIter[i]);
-                        tmpArr[i] = 1.5 * Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * ToDefineType(lstWithTypeIter[i]);
+                if (LimitMemory.Text == "")
+                    throw new Exception();
+                else
+                    v = Convert.ToDouble(LimitMemory.Text);
+
+                for (byte i = 0; i < perebor.Length; i++) {
+                    perebor[i] = 0;
+                    MyTable.Rows[i].Cells[0].Value = 0;
+                }
+
+                int count = 0;
+                while (NextSet(perebor, perebor.Length, count)) {
+                    double tmpF = 0;
+                    tmpV = 0;
+                    double[] tmpArr = new double[informationMas.Count];
+                    for (int i = 0; i < perebor.Length; i++) {
+                        if (perebor[i] == 1) {
+                            tmpV += 1.5 * Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * ToDefineType(lstWithTypeIter[i]);
+                            tmpF += Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * ToCalculateDifference(lstWithTypeIter[i]);
+                            tmpArr[i] = 1.5 * Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) * ToDefineType(lstWithTypeIter[i]);
+                        }
+                        else
+                            tmpArr[i] = 0;
                     }
-                    else
-                        tmpArr[i] = 0;
+                    if (tmpV <= v && myWin < tmpF) {
+                        myWin = tmpF;
+                        resultV = tmpV;
+                        Array.Copy(tmpArr, arrayV, arrayV.Length);
+                        Array.Copy(perebor, perebWin, perebor.Length);
+                    }
+                    count++;
                 }
-                if (tmpV <= v && myWin < tmpF) {
-                    myWin = tmpF;
-                    resultV = tmpV;
-                    Array.Copy(tmpArr, arrayV, arrayV.Length);
-                    Array.Copy(perebor, perebWin, perebor.Length);
-                }
-                count++;
+            }
+            catch (Exception) {
+                MessageBox.Show("Вохникло данное исключение: " + ex.Message);
             }
 
             for (int i = 0; i < perebor.Length; i++) {
