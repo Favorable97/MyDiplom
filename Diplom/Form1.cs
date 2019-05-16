@@ -70,7 +70,7 @@ namespace Diplom {
             int index = 0;
             foreach (KeyValuePair<string, int> tmp in informationMas) {
                 MyTable.Rows[index].Cells[1].Value = tmp.Key;
-                MyTable.Rows[index].Cells[2].Value = tmp.Value;
+                MyTable.Rows[index].Cells[3].Value = tmp.Value;
                 index++;
             }
             for (int i = 0; i < informationMas.Count; i++) {
@@ -169,7 +169,7 @@ namespace Diplom {
                     count++;
                 }
             }
-            catch (Exception) {
+            catch (Exception ex) {
                 MessageBox.Show("Вохникло данное исключение: " + ex.Message);
             }
 
