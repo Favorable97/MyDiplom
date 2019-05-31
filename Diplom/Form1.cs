@@ -29,13 +29,15 @@ namespace Diplom {
                 toolStripStatusLabel1.Text = filePath;
             }
             catch (Exception ex) {
-                MessageBox.Show("Вохникло данное исключение: " + ex.Message); 
+                MessageBox.Show("Вохникло данное исключение: " + ex.Message);
             }
-            
+
         }
 
         private void CodeAnalysis_Click(object sender, EventArgs e) {
-            try {
+            if (filePath == "") {
+                MessageBox.Show("Не выбран файл!");
+            } else {
                 ParsingClass parsing = new ParsingClass(filePath);
                 parsing.ParsingText();
                 informationMas = parsing.informationMas;
@@ -45,10 +47,8 @@ namespace Diplom {
                 ToFillTable();
                 CalculationWin.Visible = true;
             }
-            catch(Exception ex) {
-                MessageBox.Show("Вохникло данное исключение: " + ex.Message);
-            }
-                
+
+
             #region _Grow_to_
             /*
              * size_type _Grow_to(size_type _Count) const
@@ -66,7 +66,7 @@ namespace Diplom {
 
         }
 
-        private void ToFillTable(){
+        private void ToFillTable() {
             int index = 0;
             foreach (KeyValuePair<string, int> tmp in informationMas) {
                 MyTable.Rows[index].Cells[1].Value = tmp.Key;
@@ -124,22 +124,28 @@ namespace Diplom {
                     return;
                 }
             }
-            
+
+        }
+
+        bool IsCheckToPressButton() {
+            for (int i = 0; i < informationMas.Count; i++) {
+                if ((MyTable.Rows[i].Cells[4].Value.Equals("???")) || (MyTable.Rows[i].Cells[4].Value.Equals("")) || (Convert.ToInt16(MyTable.Rows[i].Cells[4].Value) <= 0))
+                    return false;
+            }
+            return true;
         }
 
         private void AutoCalcWinButton_Click(object sender, EventArgs e) {
-            byte[] perebWin = new byte[informationMas.Count];
-            myWin = int.MinValue;
-            resultV = 0;
-            tmpV = 0;
-            double[] arrayV = new double[informationMas.Count];
-            byte[] perebor = new byte[informationMas.Count];
-            try {
-                
-                if (LimitMemory.Text == "")
-                    throw new Exception();
-                else
-                    v = Convert.ToDouble(LimitMemory.Text);
+            if (LimitMemory.Text == "" || IsCheckToPressButton() == false)
+                MessageBox.Show("Не все параметры введены!");
+            else {
+                byte[] perebWin = new byte[informationMas.Count];
+                myWin = int.MinValue;
+                resultV = 0;
+                tmpV = 0;
+                double[] arrayV = new double[informationMas.Count];
+                byte[] perebor = new byte[informationMas.Count];
+                v = Convert.ToDouble(LimitMemory.Text);
 
                 for (byte i = 0; i < perebor.Length; i++) {
                     perebor[i] = 0;
@@ -168,26 +174,24 @@ namespace Diplom {
                     }
                     count++;
                 }
-            }
-            catch (Exception ex) {
-                MessageBox.Show("Вохникло данное исключение: " + ex.Message);
-            }
 
-            for (int i = 0; i < perebor.Length; i++) {
-                if (perebWin[i] == 0) {
-                    MyTable.Rows[i].Cells[7].Style.BackColor = Color.Red;
-                    MyTable.Rows[i].Cells[7].Value = "нет";
+                for (int i = 0; i < perebor.Length; i++) {
+                    if (perebWin[i] == 0) {
+                        MyTable.Rows[i].Cells[7].Style.BackColor = Color.Red;
+                        MyTable.Rows[i].Cells[7].Value = "нет";
+                    }
+                    else {
+                        MyTable.Rows[i].Cells[0].Value = true;
+                        MyTable.Rows[i].Cells[7].Style.BackColor = Color.Green;
+                        MyTable.Rows[i].Cells[7].Value = "да";
+                    }
+                    MyTable.Rows[i].Cells[6].Value = arrayV[i];
                 }
-                else {
-                    MyTable.Rows[i].Cells[0].Value = true;
-                    MyTable.Rows[i].Cells[7].Style.BackColor = Color.Green;
-                    MyTable.Rows[i].Cells[7].Value = "да";
-                }
-                MyTable.Rows[i].Cells[6].Value = arrayV[i];
+
+                labelAWithWin.Text = "";
+                labelAWithWin.Text = "F = " + myWin + " затрачено " + resultV + " байт";
             }
                 
-            labelAWithWin.Text = "";
-            labelAWithWin.Text = "F = " + myWin + " затрачено " + resultV + " байт";
         }
 
         private double ToCalculateDifference(string type) {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace Diplom {
     class ParsingClass {
@@ -20,11 +21,16 @@ namespace Diplom {
         }
 
         private static void ReadFile(ref string text) {
-            using (StreamReader read = new StreamReader(FilePath, System.Text.Encoding.Default)) {
-                string line = "";
-                while ((line = read.ReadLine()) != null) {
-                    text += line + '\n';
+            try {
+                using (StreamReader read = new StreamReader(FilePath, System.Text.Encoding.Default)) {
+                    string line = "";
+                    while ((line = read.ReadLine()) != null) {
+                        text += line + '\n';
+                    }
                 }
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Ошибка чтения из файла: " + ex.Message + "\n" + ex.Source);
             }
         }
 
