@@ -20,18 +20,12 @@ namespace Diplom {
         string filePath;
 
         private void ToChooseFile_Click(object sender, EventArgs e) {
-            try {
-                if (OpenFile.ShowDialog() == DialogResult.Cancel)
-                    return;
-                filePath = OpenFile.FileName;
-                statusStrip1.Visible = true;
-                toolStripStatusLabel1.Visible = true;
-                toolStripStatusLabel1.Text = filePath;
-            }
-            catch (Exception ex) {
-                MessageBox.Show("Вохникло данное исключение: " + ex.Message);
-            }
-
+            if (OpenFile.ShowDialog() == DialogResult.Cancel)
+                return;
+            filePath = OpenFile.FileName;
+            statusStrip1.Visible = true;
+            toolStripStatusLabel1.Visible = true;
+            toolStripStatusLabel1.Text = filePath;
         }
 
         private void CodeAnalysis_Click(object sender, EventArgs e) {
