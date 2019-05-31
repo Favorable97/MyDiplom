@@ -11,7 +11,7 @@ namespace Diplom {
     public partial class Form1 : Form {
         public Form1() {
             InitializeComponent();
-            OpenFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+            OpenFile.Filter = "Text files(*.cpp)|*.cpp|All files(*.*)|*.*";
             CodeAnalysis.Click += CodeAnalysis_Click;
         }
         //List<string> lstWithNameList; // контейнер, где хранятся имена всех контейнеров C++

@@ -6,3 +6,6 @@ https://www.viva64.com/ru/t/0084/
 https://docs.microsoft.com/ru-ru/cpp/standard-library/stl-containers?view=vs-2019
 https://habr.com/ru/company/ua-hosting/blog/278369/
 https://ru.cppreference.com/w/cpp/container
+Ё.“роелсен. язык програграммировани€ C# 5.0 и платформа .NET 4.5
+https://metanit.com/sharp/tutorial/1.1.php
+https://professorweb.ru/my/csharp/charp_theory/level1/index.php
