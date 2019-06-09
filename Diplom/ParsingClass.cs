@@ -97,25 +97,39 @@ namespace Diplom {
          */
         private void SearchIterators() {
             for (int i = 0; i < lstWithBlocks.Count; i++) {
-                string strWithArg = lstWithBlocks[i].Substring(lstWithBlocks[i].IndexOf('(') + 1, lstWithBlocks[i].IndexOf(';') - lstWithBlocks[i].IndexOf('(') - 1);
-                int pos1 = strWithArg.IndexOf(' ');
-                int pos2 = strWithArg.IndexOf('=');
-                string nameIterator = strWithArg.Substring(pos1 + 1, pos2 - pos1 - 1).Trim(' ');
                 Regex regex = new Regex(@"\w*::iterator");
-                if (regex.IsMatch(strWithArg)) {
-                    string[] masString = lstWithBlocks[i].Split('\t');
-                    for (int j = 2; j < masString.Length; j++) {
-                        if (masString[j].Contains(nameIterator)) {
-                            informationMas.Add(nameIterator, indexList[i]);
-                            lstWithTypeIter.Add(TypeDefinitionIter(i));
-                            break;
+                string strWithArg = lstWithBlocks[i].Substring(lstWithBlocks[i].IndexOf('(') + 1, lstWithBlocks[i].IndexOf(';') - lstWithBlocks[i].IndexOf('(') - 1);
+                if (regex.IsMatch(strWithArg)){ 
+                    if (IsList(strWithArg)) {
+                        string nameIterator = strWithArg.Substring(strWithArg.IndexOf(' ') + 1, strWithArg.IndexOf('=') - strWithArg.IndexOf(' ') - 1).Trim(' ');
+                        string[] masString = lstWithBlocks[i].Split('\t');
+                        for (int j = 2; j < masString.Length; j++) {
+                            if (masString[j].Contains(nameIterator)) {
+                                informationMas.Add(nameIterator, indexList[i]);
+                                lstWithTypeIter.Add(TypeDefinitionIter(i));
+                                break;
+                            }
                         }
                     }
                 }
             }
         }
+
+        /*
+         * Определение типа контейнера 
+         * Находим символ ":" от него + 2 - это начальная позиция и находим символ < - это конечная позиция
+         * Создан, что предотвратить оптимизацию только контейнера list
+         */
+
+        private bool IsList(string str) {
+            bool isList = str.Substring(str.IndexOf(':') + 2, str.IndexOf('<') - (str.IndexOf(':') + 2)) == "list" ? true : false;
+            return isList; 
+        }
+
         /*
          * Определение типа итераторов
+         * Разбиваем строку с циклом, чтобы осталось только например(std::list<int>::iterator it = numbers1.begin())
+         * Далее определяем то, что находится между символами '<' и '>'
          */
         private string TypeDefinitionIter(int index) {
             string strWithArg = lstWithBlocks[index].Substring(lstWithBlocks[index].IndexOf('(') + 1, lstWithBlocks[index].IndexOf(';') - lstWithBlocks[index].IndexOf('(') - 1);

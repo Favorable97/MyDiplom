@@ -6,19 +6,21 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Diplom {
     public partial class Form1 : Form {
         public Form1() {
             InitializeComponent();
             OpenFile.Filter = "Text files(*.cpp)|*.cpp|All files(*.*)|*.*";
-            CodeAnalysis.Click += CodeAnalysis_Click;
+            //CodeAnalysis.Click += CodeAnalysis_Click;
         }
         //List<string> lstWithNameList; // контейнер, где хранятся имена всех контейнеров C++
         List<string> lstWithTypeIter; // контейнер, где хранятся блоки со всеми циклами C++
         Dictionary<string, int> informationMas;
         string filePath;
 
+        /*Выбор файла*/
         private void ToChooseFile_Click(object sender, EventArgs e) {
             if (OpenFile.ShowDialog() == DialogResult.Cancel)
                 return;
@@ -28,6 +30,10 @@ namespace Diplom {
             toolStripStatusLabel1.Text = filePath;
         }
 
+        /*
+         * Событие кнопки
+         * По нажатии анализируется код
+         */
         private void CodeAnalysis_Click(object sender, EventArgs e) {
             if (filePath == "") {
                 MessageBox.Show("Не выбран файл!");
@@ -41,7 +47,7 @@ namespace Diplom {
                 ToFillTable();
                 CalculationWin.Visible = true;
             }
-
+        }
 
             #region _Grow_to_
             /*
@@ -58,8 +64,10 @@ namespace Diplom {
              */
             #endregion
 
-        }
-
+        
+        /*
+         * Заполнение таблицы начальными значениями
+         */
         private void ToFillTable() {
             int index = 0;
             foreach (KeyValuePair<string, int> tmp in informationMas) {
@@ -75,6 +83,8 @@ namespace Diplom {
             }
         }
 
+
+        /*Событие checkbox - ов в DataGridView*/
         public double myWin;
         double v, tmpV, resultV;
         int k;
@@ -129,6 +139,9 @@ namespace Diplom {
             return true;
         }
 
+        /*
+         * Автоматическое определение решения, то есть полный перебор
+         */
         private void AutoCalcWinButton_Click(object sender, EventArgs e) {
             if (LimitMemory.Text == "" || IsCheckToPressButton() == false)
                 MessageBox.Show("Не все параметры введены!");
@@ -145,7 +158,8 @@ namespace Diplom {
                     perebor[i] = 0;
                     MyTable.Rows[i].Cells[0].Value = 0;
                 }
-
+                Stopwatch time1 = new Stopwatch();
+                time1.Start();
                 int count = 0;
                 while (NextSet(perebor, perebor.Length, count)) {
                     double tmpF = 0;
@@ -181,13 +195,20 @@ namespace Diplom {
                     }
                     MyTable.Rows[i].Cells[6].Value = arrayV[i];
                 }
-
+                time1.Stop();
+                TimeSpan time = time1.Elapsed;
+                MessageBox.Show("time: " + time.Milliseconds);
                 labelAWithWin.Text = "";
                 labelAWithWin.Text = "F = " + myWin + " затрачено " + resultV + " байт";
             }
                 
         }
 
+        /*
+         * Метод реализованный для вычисления разницы tList - tVector
+         * Метод получает на вход тип контейнера
+         * Возвращает число - разницу
+         */
         private double ToCalculateDifference(string type) {
             byte size = 0;
             switch (type) {
@@ -214,6 +235,11 @@ namespace Diplom {
             return result;
         }
 
+        /*
+         * Метод реализован для определения веса одного элемента контейнера в зависимости от типа
+         * На вход получает - тип
+         * На выход - число - вес
+         */
         private int ToDefineType(string type) {
             switch (type) {
                 case "byte":
@@ -253,7 +279,8 @@ namespace Diplom {
                 SVector.ForeColor = Color.Silver;
             }
         }
-
+        
+        /*Полный перебор*/
         bool finishFlag = true;
         bool NextSet(byte[] perebor, int n, int count) {
             if (count == 0)
