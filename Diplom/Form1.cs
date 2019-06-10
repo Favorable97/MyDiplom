@@ -7,27 +7,46 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO;
 
 namespace Diplom {
     public partial class Form1 : Form {
         public Form1() {
             InitializeComponent();
             OpenFile.Filter = "Text files(*.cpp)|*.cpp|All files(*.*)|*.*";
+            OpenFile.InitialDirectory = AppDomain.CurrentDomain.RelativeSearchPath;
             //CodeAnalysis.Click += CodeAnalysis_Click;
         }
         //List<string> lstWithNameList; // контейнер, где хранятся имена всех контейнеров C++
         List<string> lstWithTypeIter; // контейнер, где хранятся блоки со всеми циклами C++
         Dictionary<string, int> informationMas;
-        string filePath;
-
+        string textFile = "";
+        string filePath = "";
         /*Выбор файла*/
         private void ToChooseFile_Click(object sender, EventArgs e) {
             if (OpenFile.ShowDialog() == DialogResult.Cancel)
                 return;
+
             filePath = OpenFile.FileName;
+            ReadFile(ref textFile);
+            richTextBox1.Text = textFile;
             statusStrip1.Visible = true;
             toolStripStatusLabel1.Visible = true;
             toolStripStatusLabel1.Text = filePath;
+        }
+
+        private void ReadFile(ref string text) {
+            try {
+                using (StreamReader read = new StreamReader(filePath, System.Text.Encoding.Default)) {
+                    string line = "";
+                    while ((line = read.ReadLine()) != null) {
+                        text += line + '\n';
+                    }
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Ошибка чтения из файла: " + ex.Message + "\n" + ex.Source);
+            }
         }
 
         /*
@@ -38,7 +57,7 @@ namespace Diplom {
             if (filePath == "") {
                 MessageBox.Show("Не выбран файл!");
             } else {
-                ParsingClass parsing = new ParsingClass(filePath);
+                ParsingClass parsing = new ParsingClass(textFile);
                 parsing.ParsingText();
                 informationMas = parsing.informationMas;
                 lstWithTypeIter = parsing.lstWithTypeIter;
@@ -153,13 +172,10 @@ namespace Diplom {
                 double[] arrayV = new double[informationMas.Count];
                 byte[] perebor = new byte[informationMas.Count];
                 v = Convert.ToDouble(LimitMemory.Text);
-
                 for (byte i = 0; i < perebor.Length; i++) {
                     perebor[i] = 0;
                     MyTable.Rows[i].Cells[0].Value = 0;
                 }
-                Stopwatch time1 = new Stopwatch();
-                time1.Start();
                 int count = 0;
                 while (NextSet(perebor, perebor.Length, count)) {
                     double tmpF = 0;
@@ -195,9 +211,7 @@ namespace Diplom {
                     }
                     MyTable.Rows[i].Cells[6].Value = arrayV[i];
                 }
-                time1.Stop();
-                TimeSpan time = time1.Elapsed;
-                MessageBox.Show("time: " + time.Milliseconds);
+                
                 labelAWithWin.Text = "";
                 labelAWithWin.Text = "F = " + myWin + " затрачено " + resultV + " байт";
             }

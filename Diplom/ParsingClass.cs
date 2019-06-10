@@ -2,36 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Diplom {
     class ParsingClass {
-        private static string FilePath { get; set; }
         private static byte[] mas = new byte[2]; // 0 - открывающие скобки, 1 - закрывающие
         private List<string> lstWithBlocks = new List<string>(); // контейнер с блоками циклов
         public List<string> lstWithTypeIter = new List<string>(); // контейнер, где хранятся типы итераторов/контейнеров C++
         private List<int> indexList = new List<int>(); // контейнер с номерами строк циклов
         public Dictionary<string, int> informationMas = new Dictionary<string, int>();
-        string textInFile = "";
+        private string TextInFile { get; }
 
-        public ParsingClass(string filePath) {
-            FilePath = filePath;
-        }
-
-        private static void ReadFile(ref string text) {
-            try {
-                using (StreamReader read = new StreamReader(FilePath, System.Text.Encoding.Default)) {
-                    string line = "";
-                    while ((line = read.ReadLine()) != null) {
-                        text += line + '\n';
-                    }
-                }
-            }
-            catch (Exception ex) {
-                MessageBox.Show("Ошибка чтения из файла: " + ex.Message + "\n" + ex.Source);
-            }
+        public ParsingClass(string textInFile) {
+            TextInFile = textInFile;
         }
 
         /*
@@ -43,8 +27,7 @@ namespace Diplom {
          * Дойдя до конца блока, записываем его в специальный список, но прежде форматируем
          */
         public void ParsingText() {
-            ReadFile(ref textInFile);
-            string[] splitText = textInFile.Split('\n');
+            string[] splitText = TextInFile.Split('\n');
             Regex regex = new Regex(@"\w*for\w*");
             Regex pattern = new Regex(@"\s+");
 
