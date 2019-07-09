@@ -121,63 +121,72 @@
             this.Column6,
             this.Column7,
             this.Column4});
-            this.MyTable.Location = new System.Drawing.Point(572, 229);
+            this.MyTable.Location = new System.Drawing.Point(572, 230);
             this.MyTable.Name = "MyTable";
             this.MyTable.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.MyTable.Size = new System.Drawing.Size(584, 259);
+            this.MyTable.Size = new System.Drawing.Size(635, 44);
             this.MyTable.TabIndex = 4;
             this.MyTable.Visible = false;
             this.MyTable.CurrentCellDirtyStateChanged += new System.EventHandler(this.MyTable_CurrentCellDirtyStateChanged);
             // 
             // Column1
             // 
+            this.Column1.FillWeight = 6.791172F;
             this.Column1.HeaderText = "";
             this.Column1.Name = "Column1";
-            this.Column1.Width = 20;
+            this.Column1.Width = 70;
             // 
             // Column2
             // 
+            this.Column2.FillWeight = 119.1196F;
             this.Column2.HeaderText = "Итератор";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column2.Width = 80;
+            this.Column2.Width = 70;
             // 
             // Column8
             // 
+            this.Column8.FillWeight = 72.88135F;
             this.Column8.HeaderText = "Тип";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
-            this.Column8.Width = 60;
+            this.Column8.Width = 69;
             // 
             // Column3
             // 
+            this.Column3.FillWeight = 138.9695F;
             this.Column3.HeaderText = "Номер строки";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            this.Column3.Width = 60;
+            this.Column3.Width = 70;
             // 
             // Column5
             // 
+            this.Column5.FillWeight = 184.1371F;
             this.Column5.HeaderText = "Количество элементов";
             this.Column5.Name = "Column5";
-            this.Column5.Width = 80;
+            this.Column5.Width = 70;
             // 
             // Column6
             // 
+            this.Column6.FillWeight = 102.9744F;
             this.Column6.HeaderText = "tList - tVector";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
+            this.Column6.Width = 70;
             // 
             // Column7
             // 
+            this.Column7.FillWeight = 44.89193F;
             this.Column7.HeaderText = "V";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
-            this.Column7.Width = 35;
+            this.Column7.Width = 70;
             // 
             // Column4
             // 
+            this.Column4.FillWeight = 130.235F;
             this.Column4.HeaderText = "Рекомендации";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
@@ -355,7 +364,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1175, 537);
+            this.ClientSize = new System.Drawing.Size(1250, 537);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.CalculationWin);
             this.Controls.Add(this.MyTable);
@@ -398,6 +407,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox SVector;
         private System.Windows.Forms.TextBox SList;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
@@ -406,8 +417,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

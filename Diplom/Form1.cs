@@ -89,6 +89,7 @@ namespace Diplom {
          */
         private void ToFillTable() {
             int index = 0;
+            MyTable.Height = dataGridViewHeight();
             foreach (KeyValuePair<string, int> tmp in informationMas) {
                 MyTable.Rows[index].Cells[1].Value = tmp.Key;
                 MyTable.Rows[index].Cells[3].Value = tmp.Value;
@@ -102,6 +103,12 @@ namespace Diplom {
             }
         }
 
+        private int dataGridViewHeight() {
+            int sum = MyTable.ColumnHeadersHeight;
+            foreach (DataGridViewRow row in MyTable.Rows)
+                sum += row.Height + 1;
+            return sum;
+        }
 
         /*Событие checkbox - ов в DataGridView*/
         public double myWin;
@@ -177,6 +184,7 @@ namespace Diplom {
                     MyTable.Rows[i].Cells[0].Value = 0;
                 }
                 int count = 0;
+                
                 while (NextSet(perebor, perebor.Length, count)) {
                     double tmpF = 0;
                     tmpV = 0;
